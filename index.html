@@ -2,102 +2,181 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy 15th Birthday Victoria!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoria Turns 15 🎉</title>
 
 <style>
-body{
-font-family: Arial, sans-serif;
-text-align:center;
-background: linear-gradient(135deg,#ff9ad5,#ffd6f6,#c8e8ff);
+
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+height:100vh;
 overflow-x:hidden;
+background:linear-gradient(-45deg,#ff4fa3,#ff9ad5,#8fd3ff,#c8e8ff);
+background-size:400% 400%;
+animation:bgMove 10s infinite alternate;
+color:white;
+text-align:center;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+100%{background-position:100% 50%}
+}
+
+header{
+padding:60px 20px;
 }
 
 h1{
 font-size:60px;
-color:white;
-text-shadow:2px 2px 10px #ff4fa3;
-margin-top:40px;
+text-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
-h2{
-color:#fff;
+.subtitle{
+font-size:24px;
+margin-top:10px;
 }
 
-.message{
-font-size:22px;
-background:white;
-padding:20px;
-border-radius:15px;
-width:70%;
+.section{
+padding:60px 20px;
+}
+
+.card{
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+border-radius:20px;
+padding:30px;
+max-width:700px;
 margin:auto;
-box-shadow:0 10px 20px rgba(0,0,0,0.2);
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 button{
-padding:15px 25px;
-font-size:18px;
+margin-top:20px;
+padding:15px 30px;
 border:none;
 border-radius:10px;
-background:#ff4fa3;
+font-size:18px;
+background:#ff2f92;
 color:white;
 cursor:pointer;
-margin-top:20px;
+transition:0.3s;
 }
 
 button:hover{
-background:#ff2a8c;
+transform:scale(1.1);
 }
 
 .countdown{
-font-size:30px;
-color:white;
+font-size:35px;
+margin-top:20px;
+}
+
+.gallery{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
 margin-top:20px;
 }
 
 .gallery img{
 width:200px;
 border-radius:15px;
-margin:10px;
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
 }
 
-footer{
-margin-top:40px;
-padding:20px;
-color:white;
+.cake{
+font-size:120px;
+cursor:pointer;
+transition:0.3s;
 }
+
+.cake:hover{
+transform:scale(1.1);
+}
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:white;
+color:black;
+padding:40px;
+border-radius:20px;
+text-align:center;
+}
+
+.heart{
+position:fixed;
+color:#ff2f92;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
+}
+
 </style>
-
 </head>
 
 <body>
 
-<h1>🎉 Happy 15th Birthday Victoria! 🎉</h1>
+<header>
+<h1>🎉 Happy 15th Birthday Victoria 🎉</h1>
+<div class="subtitle">Today is all about YOU!</div>
+</header>
 
-<h2>You're officially 15 today!</h2>
+<section class="section">
+<div class="card">
+<h2>Special Message</h2>
 
-<div class="message">
-Victoria, I hope you have the BEST birthday ever!  
-You deserve an amazing day full of fun, laughs, and cake.  
+<p style="margin-top:15px;font-size:20px;">
+Victoria, hope your 15th birthday is amazing and full of fun, cake, and great memories.  
+Also let's be honest… <b>Labubu is hilarious</b> 😂  
+Enjoy every moment of your special day!
+</p>
 
-Also let's be honest… **Labubu is hilarious** 😂  
+<button onclick="showSurprise()">🎁 Open Surprise</button>
 
-Enjoy being 15 and making awesome memories!
 </div>
+</section>
 
+<section class="section">
+<div class="card">
+<h2>⏳ Birthday Countdown</h2>
 <div class="countdown" id="countdown"></div>
-
-<br>
-
-<button onclick="showSurprise()">🎁 Click for a Surprise</button>
-
-<div id="surprise" style="display:none; margin-top:20px; font-size:24px;">
-🎊 SURPRISE VICTORIA!!! 🎊  
-You are awesome and today is YOUR day!
 </div>
+</section>
 
-<h2>📸 Memory Gallery</h2>
+<section class="section">
+<div class="card">
+<h2>🎂 Click the Cake</h2>
+<div class="cake" onclick="confetti()">🎂</div>
+<p>Click the cake to celebrate!</p>
+</div>
+</section>
+
+<section class="section">
+<div class="card">
+<h2>📸 Memories</h2>
 
 <div class="gallery">
 <img src="https://picsum.photos/200?1">
@@ -105,22 +184,32 @@ You are awesome and today is YOUR day!
 <img src="https://picsum.photos/200?3">
 </div>
 
-<footer>
-Made with 🎂 for Victoria
-</footer>
+</div>
+</section>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2>🎊 Surprise Victoria! 🎊</h2>
+<p>You’re awesome and today is your day!</p>
+<br>
+<button onclick="closeModal()">Close</button>
+</div>
+</div>
 
 <script>
 
-// surprise message
 function showSurprise(){
-document.getElementById("surprise").style.display="block";
+document.getElementById("modal").style.display="flex";
 confetti();
 }
 
-// countdown
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
 let birthday = new Date("July 1, 2026 00:00:00").getTime();
 
-let x = setInterval(function(){
+setInterval(function(){
 
 let now = new Date().getTime();
 let distance = birthday - now;
@@ -130,28 +219,50 @@ let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
 let minutes = Math.floor((distance%(1000*60*60))/(1000*60));
 
 document.getElementById("countdown").innerHTML =
-"⏳ Countdown: "+days+"d "+hours+"h "+minutes+"m ";
+days+"d "+hours+"h "+minutes+"m";
 
 },1000);
 
-// confetti
 function confetti(){
-for(let i=0;i<100;i++){
+
+for(let i=0;i<120;i++){
+
 let conf=document.createElement("div");
 conf.style.position="fixed";
-conf.style.width="10px";
-conf.style.height="10px";
+conf.style.width="8px";
+conf.style.height="8px";
 conf.style.background="hsl("+Math.random()*360+",100%,50%)";
 conf.style.left=Math.random()*100+"vw";
 conf.style.top="-10px";
-conf.style.opacity="0.8";
-conf.style.borderRadius="50%";
+conf.style.opacity="0.9";
+conf.style.transform="rotate("+Math.random()*360+"deg)";
 conf.style.animation="fall 3s linear forwards";
+
 document.body.appendChild(conf);
 
 setTimeout(()=>conf.remove(),3000);
+
 }
+
 }
+
+document.addEventListener("click",function(){
+
+for(let i=0;i<5;i++){
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+
+}
+
+});
 
 </script>
 
