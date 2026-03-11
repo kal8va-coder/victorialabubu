@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy 15th Birthday Victoria!</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+text-align:center;
+background: linear-gradient(135deg,#ff9ad5,#ffd6f6,#c8e8ff);
+margin:0;
+overflow-x:hidden;
+}
+
+h1{
+font-size:60px;
+color:white;
+text-shadow:2px 2px 10px #ff4fa3;
+margin-top:40px;
+}
+
+h2{
+color:#fff;
+}
+
+.message{
+font-size:22px;
+background:white;
+padding:20px;
+border-radius:15px;
+width:70%;
+margin:auto;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+button{
+padding:15px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff4fa3;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+button:hover{
+background:#ff2a8c;
+}
+
+.countdown{
+font-size:30px;
+color:white;
+margin-top:20px;
+}
+
+.gallery img{
+width:200px;
+border-radius:15px;
+margin:10px;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+footer{
+margin-top:40px;
+padding:20px;
+color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🎉 Happy 15th Birthday Victoria! 🎉</h1>
+
+<h2>You're officially 15 today!</h2>
+
+<div class="message">
+Victoria, I hope you have the BEST birthday ever!  
+You deserve an amazing day full of fun, laughs, and cake.  
+
+Also let's be honest… **Labubu is hilarious** 😂  
+
+Enjoy being 15 and making awesome memories!
+</div>
+
+<div class="countdown" id="countdown"></div>
+
+<br>
+
+<button onclick="showSurprise()">🎁 Click for a Surprise</button>
+
+<div id="surprise" style="display:none; margin-top:20px; font-size:24px;">
+🎊 SURPRISE VICTORIA!!! 🎊  
+You are awesome and today is YOUR day!
+</div>
+
+<h2>📸 Memory Gallery</h2>
+
+<div class="gallery">
+<img src="https://picsum.photos/200?1">
+<img src="https://picsum.photos/200?2">
+<img src="https://picsum.photos/200?3">
+</div>
+
+<footer>
+Made with 🎂 for Victoria
+</footer>
+
+<script>
+
+// surprise message
+function showSurprise(){
+document.getElementById("surprise").style.display="block";
+confetti();
+}
+
+// countdown
+let birthday = new Date("July 1, 2026 00:00:00").getTime();
+
+let x = setInterval(function(){
+
+let now = new Date().getTime();
+let distance = birthday - now;
+
+let days = Math.floor(distance/(1000*60*60*24));
+let hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+let minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("countdown").innerHTML =
+"⏳ Countdown: "+days+"d "+hours+"h "+minutes+"m ";
+
+},1000);
+
+// confetti
+function confetti(){
+for(let i=0;i<100;i++){
+let conf=document.createElement("div");
+conf.style.position="fixed";
+conf.style.width="10px";
+conf.style.height="10px";
+conf.style.background="hsl("+Math.random()*360+",100%,50%)";
+conf.style.left=Math.random()*100+"vw";
+conf.style.top="-10px";
+conf.style.opacity="0.8";
+conf.style.borderRadius="50%";
+conf.style.animation="fall 3s linear forwards";
+document.body.appendChild(conf);
+
+setTimeout(()=>conf.remove(),3000);
+}
+}
+
+</script>
+
+<style>
+@keyframes fall{
+to{
+transform:translateY(100vh) rotate(720deg);
+}
+}
+</style>
+
+</body>
+</html>
